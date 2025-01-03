@@ -3,6 +3,7 @@ package com.alphacode.task_sphere.service;
 import com.alphacode.task_sphere.entity.Task;
 import com.alphacode.task_sphere.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteTask(Long id){
         taskRepository.deleteById(id);
     }
